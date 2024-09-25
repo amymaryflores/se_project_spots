@@ -4,9 +4,9 @@
     border-bottom: 1px rgba(33,33,33, 0.4) solid;
     }
 
-    .profile__avatar {
-        margin-right: 20px;
-    }
+.profile__avatar {
+    margin-right: 20px;
+}
 
 .profile__column {
     display: flex;
@@ -18,13 +18,26 @@
 }
 
 .profile__description {
-margin: 0;
+    margin: 0;
+    font: poppins;
 }
 
 .profile__edit-btn {
 margin-top: auto;
+background-color: transparent;
+border: none;
+gap: 20px;
+height: 16x;
+width: 84px;
 }
 
 .profile__add-btn {
     margin-left: auto;
+    background-color: #212121;
+    text-decoration-color: #fff;
+    gap: 8px;
+    height: 52px;
+    width: 149px;
+    padding: 18px 32px;
+    border-radius: 8px;
 }
