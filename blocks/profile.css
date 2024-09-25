@@ -26,9 +26,10 @@
 margin-top: auto;
 background-color: transparent;
 border: none;
-gap: 20px;
-height: 16x;
-width: 84px;
+display: flex;
+gap: 5px;
+align-items: center;
+
 }
 
 .profile__add-btn {
@@ -36,8 +37,11 @@ width: 84px;
     background-color: #212121;
     text-decoration-color: #fff;
     gap: 8px;
+    color: #fff;
     height: 52px;
-    width: 149px;
+    display: flex;
+    justify-content: center;
     padding: 18px 32px;
     border-radius: 8px;
+    align-self: flex-end;
 }

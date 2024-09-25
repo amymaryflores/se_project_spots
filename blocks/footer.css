@@ -1,0 +1,11 @@
+.footer {
+    font-family: poppins;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    margin-top: auto;
+    justify-content: center;
+    height: 16px;
+    border-top: 1px rgba(33, 33, 33, 0.4) solid;
+    padding: 34px 0 20px;
+}
