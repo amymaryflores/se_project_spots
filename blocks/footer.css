@@ -1,6 +1,6 @@
 .footer {
     
-    display: flex;
+    display: grid;
     margin-top: auto;
     justify-content: center;
     height: 16px;
