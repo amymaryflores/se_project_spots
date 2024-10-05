@@ -22,6 +22,7 @@ Deployment link (https://amymaryflores.github.io/se_project_spots/)
 **Images**  
 (./images/Desktop-demo.png)
 (./images/Mobile-demo.png)
+[Link to video of my project] (https://www.loom.com/share/785012bffbfc47e48942b3e6450051f2?sid=4da3ecf6-0095-46c7-8dcd-0b9209890761)
   
 The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
   
