@@ -47,7 +47,7 @@
   margin-top: 12px;
 }
 
-@media screen and (max-width: 672px) {
+@media screen and (max-width: 660px) {
   
   .card {
    gap: 12px;
