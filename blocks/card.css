@@ -26,8 +26,8 @@
     height: 20px;
     border: none;
     background-color: transparent;
-    opacity: ;
-    background-size: cover;
+    opacity: 40%;
+    cursor: pointer;
   }
   
   .card__title {
