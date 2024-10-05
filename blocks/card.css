@@ -11,6 +11,7 @@
   width: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 
 .card__content {
@@ -55,7 +56,6 @@
   .card__image {
     height: 288px;
     width: 288px;
-    padding-bottom: 20px;
     gap: 20px;
     border-bottom: 1px;
   }
