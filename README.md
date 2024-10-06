@@ -11,6 +11,8 @@
 This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
 
 Deployment link (https://amymaryflores.github.io/se_project_spots/)
+
+[Video link about my project](https://www.loom.com/share/785012bffbfc47e48942b3e6450051f2?sid=4da3ecf6-0095-46c7-8dcd-0b9209890761)
   
 **Figma**  
   
@@ -26,6 +28,6 @@ The way you'll do this at work is by exporting images directly from Figma — we
 
  [Desktop demo](./images/Desktop-demo.png)
  [Mobile demo](./images/Mobile-demo.png)
-[Link to video of my project] (https://www.loom.com/share/785012bffbfc47e48942b3e6450051f2?sid=4da3ecf6-0095-46c7-8dcd-0b9209890761)
+
   
 Good luck and have fun!

@@ -45,6 +45,7 @@
   white-space: nowrap;
   overflow: hidden;
   margin-top: 12px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 660px) {
@@ -57,9 +58,9 @@
     height: 288px;
     width: 288px;
     gap: 20px;
-    border-bottom: 1px;
   }
   .card__title {
     font-size: 16px;
+    line-height: 16px;
   }
 }
