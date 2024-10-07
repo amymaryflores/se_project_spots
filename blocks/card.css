@@ -52,7 +52,6 @@
 @media screen and (max-width: 660px) {
   .card {
     gap: 12px;
-    padding-left: 16px;
   }
 
   .card__image {
