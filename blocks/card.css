@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: start;
   max-width: 413px;
+  padding: 16px;
 }
 
 .card__image {
@@ -19,7 +20,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 12px;
 }
 
 .card__like-btn {
@@ -55,12 +55,14 @@
   }
 
   .card__image {
-    height: 288px;
+    height: 318px;
     width: 288px;
+
   }
   .card__title {
     font-size: 16px;
     line-height: 16px;
     color: #212121;
+    
   }
 }

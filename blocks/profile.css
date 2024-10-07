@@ -107,6 +107,7 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
+    padding: 16px;
   }
 
   .profile__avatar {
@@ -138,6 +139,7 @@
     width: 100%;
     max-width: 288px;
     margin-top: 0;
+    padding-left: ;
   }
 
   .profile__edit-btn {
