@@ -125,7 +125,6 @@
 
   .profile__description {
     margin-bottom: 32px;
-
     max-width: 288px;
   }
 
@@ -139,7 +138,6 @@
     width: 100%;
     max-width: 288px;
     margin-top: 0;
-    padding-left: ;
   }
 
   .profile__edit-btn {
