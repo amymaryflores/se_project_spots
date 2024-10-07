@@ -14,10 +14,13 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 630px) {
+.cards:last-child {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 660px) {
   .cards__list {
     grid-template-columns: repeat(auto-fit, 288px);
     row-gap: 20px;
   }
-  
 }

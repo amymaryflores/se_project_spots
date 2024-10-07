@@ -1,14 +1,13 @@
 .header {
-    background-color: #fff;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-    
-  }
+  background-color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
 
-  @media screen and (max-width: 320px){
-    .header {
-      padding: 10px 80px;
-      border-bottom: 1px;
-    }
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 10px 80px;
+    border-bottom: 1px;
   }
+}

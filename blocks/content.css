@@ -1,7 +1,9 @@
- .content {
-padding: 0 20px;
- }
+.content {
+  padding: 0;
+}
 
- @media screen and (max-width:630px){
-    
- }
+@media (max-width: 320px) {
+  .content {
+    width: 288px;
+  }
+}
