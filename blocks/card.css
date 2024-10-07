@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-top: 12px;
 }
 
 .card__like-btn {
@@ -44,8 +45,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 12px;
   margin-bottom: 0;
+  color: #212121;
 }
 
 @media screen and (max-width: 660px) {
@@ -57,7 +58,6 @@
   .card__image {
     height: 288px;
     width: 288px;
-    gap: 20px;
   }
   .card__title {
     font-size: 16px;
