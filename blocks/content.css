@@ -1,6 +1,6 @@
 .content {
   padding: 0;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 320px) {
