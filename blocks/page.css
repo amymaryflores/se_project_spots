@@ -6,10 +6,5 @@
 
 .page__section {
   margin: 0 auto;
-}
-
-@media screen and (max-width: 640px) {
-  .page__section (
-
-  );
+  max-width: 1280px;
 }
