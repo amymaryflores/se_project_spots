@@ -17,7 +17,7 @@
     visibility: visible;
 }
 
-.modal__container {
+.modal__content {
     background-color: #fff;
     max-width: 730px;
     width: 100%;
