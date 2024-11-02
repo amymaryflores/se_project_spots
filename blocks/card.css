@@ -23,18 +23,43 @@
 }
 
 .card__like-btn {
-  background-image: url(../images/heart.svg);
+  background: transparent url(../images/HeartHover.svg) center no-repeat;
   width: 23px;
   height: 20px;
-  border: none;
-  background-color: transparent;
-  opacity: 40%;
+  border: none;  
+  opacity: 0.4;
   cursor: pointer;
 }
 
 .card__like-btn:hover {
-  opacity: 100%;
+  opacity: 1;
 }
+
+.card__like-btn_liked {
+    background-image: url(../images/Liked.svg);
+    opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+background-image: url(../images/LikedHover.svg);
+}
+
+.card__delete-button {
+  background-image: url(../images/delete.svg);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  top: 10px;
+  left: 371px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.card__delete-button:hover {
+  background-image: url(../images/deleteHover.svg);
+}
+
 
 .card__title {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
