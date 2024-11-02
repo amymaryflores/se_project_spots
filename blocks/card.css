@@ -44,19 +44,17 @@
 background-image: url(../images/LikedHover.svg);
 }
 
-.card__delete-button {
+.card__delete-btn {
   background-image: url(../images/delete.svg);
   width: 32px;
   height: 32px;
   border: none;
   background-color: transparent;
-  top: 10px;
-  left: 371px;
   cursor: pointer;
   position: absolute;
 }
 
-.card__delete-button:hover {
+.card__delete-btn:hover {
   background-image: url(../images/deleteHover.svg);
 }
 
