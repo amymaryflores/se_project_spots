@@ -26,7 +26,7 @@ const initialCards = [
   },
 {
   name: "San Francisco Bridge",
-  link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
 },
 ];
 
@@ -105,7 +105,7 @@ function handleEditFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const inputValues = { name: cardNameInput, link: cardLinkInput };
+  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
   closeModal(cardModal);

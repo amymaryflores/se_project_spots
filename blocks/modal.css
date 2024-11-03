@@ -40,13 +40,16 @@
     position: absolute;
     top: 32px;
     right: 50px;
-    background-image: url(../images/close.svg) ;
-    background-color: transparent;
+    background: transparent url(../images/close.svg) center no-repeat;
     width: 40px;
     height: 40px;
     opacity: 40%;
     border: none;
     cursor: pointer;
+}
+
+.modal__close-btn:hover {
+ opacity: 1;
 }
 
 .modal__title {
@@ -96,15 +99,22 @@
     cursor: pointer;
 }
 
-.modal__content_type_preview{
+.modal__content_type_preview {
     padding: 0;
 }
 
-.modal__close_type_preview{
-    background-image: url(../images/close.svg);
+.modal__close_type_preview {
+    background-image: url(../images/ClosePreview.svg);
     top: 0;
     right: -52.5px;
     opacity: 1;
+  }
+
+  .modal__image {
+   width: 100%; 
+   object-fit: cover;
+   max-width: 80vw;
+   max-height: 80vh;
   }
 
 @media screen and (max-width: 627px){
