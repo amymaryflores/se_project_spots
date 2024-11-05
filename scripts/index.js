@@ -50,7 +50,7 @@ const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = document.querySelector(".modal__image");
 const previewModalCaptionEl = document.querySelector(".modal__caption");
-const previewModalCloseButton = document.querySelector(".modal__close_type_preview");
+const previewModalCloseButton = document.querySelector(".modal__close-preview");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -134,11 +134,15 @@ cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
 
+previewModalCloseButton.addEventListener("click", () => {
+  closeModal(previewModal);
+});
+
 editForm.addEventListener("submit", handleEditFormSubmit);
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-previewModal.addEventListener("submit", handlePreviewModalSubmit);
+
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
