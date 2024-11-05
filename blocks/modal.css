@@ -13,7 +13,7 @@
     padding: 0 20px;
 }
 
-.modal_opened {
+.modal__opened {
     visibility: visible;
 }
 
@@ -105,10 +105,12 @@
 
 .modal__close_type_preview {
     background-image: url(../images/ClosePreview.svg);
-    top: 0;
-    right: -52.5px;
+    top: 80px;
+    left: 956px;
     opacity: 1;
-    position: absolute;
+    position: fixed;
+    width: 40px;
+    height: 40px;
   }
 
   .modal__image {
@@ -120,9 +122,24 @@
     max-width: 80vw;
     max-height: 80vh;
     height: 661px;
-    position: absolute;
+    position: fixed;
 }
-  }
+
+.modal__caption {
+    width: 135px;
+    height: 32px;
+    top: 750px;
+    left: 497px;
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: #ffff;
+    background-color: #212121;
+    position: fixed;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
 
 @media screen and (max-width: 627px){
      .modal {
