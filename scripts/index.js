@@ -111,6 +111,11 @@ function handleAddCardSubmit(evt) {
   closeModal(cardModal);
 }
 
+function handlePreviewModalSubmit(evt) {
+  evt.preventDefault();
+  closeModal(previewModal);
+}
+
 editModalBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
@@ -132,6 +137,8 @@ cardModalCloseBtn.addEventListener("click", () => {
 editForm.addEventListener("submit", handleEditFormSubmit);
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
+
+previewModal.addEventListener("submit", handlePreviewModalSubmit);
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
