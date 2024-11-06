@@ -106,7 +106,7 @@
 .modal__close-preview {
   background-image: url(../images/ClosePreview.svg);
   top: 0px;
-  left: 456px;
+  right: -46px;
   opacity: 1;
   width: 40px;
   height: 40px;
@@ -114,13 +114,9 @@
 
 .modal__image {
   border-radius: 8px;
-  top: 81px;
-  left: 497px;
-  width: 446.43px;
-  object-fit: cover;
+  object-fit: contain;
   max-width: 80vw;
   max-height: 80vh;
-  height: 661px;
 }
 
 .modal__caption {
@@ -166,18 +162,20 @@
   }
 
   .modal__image {
-    width: 288px;
-    height: 426.57px;
-    top: 89px;
-    left: 16px;
+  
     border-radius: 4px;
  }
 
  .modal__close-preview {
     background-image: url(../images/ClosePreview.svg);
-    width: 40px;
-    height: 40px;
-    top: -45px;
+    top: -47px;
     left: 224px;    
   }
+
+  .modal__caption {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.2px;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+}
 }
