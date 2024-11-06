@@ -124,19 +124,17 @@
 }
 
 .modal__caption {
-  width: 135px;
-  height: 32px;
-  top: 750px;
-  left: 497px;
-  border-radius: 8px;
-  padding: 4px 8px;
-  color: #ffff;
-  background-color: #212121;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
-
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #fff;
+    position: absolute;
+    background-color: #212121;
+    border-radius: 8px;
+    left: 0;
+    top: calc(100% + 10px);
 }
 
 @media screen and (max-width: 627px) {
@@ -165,15 +163,6 @@
 
   .modal__label {
     margin-bottom: 24px;
-  }
-
-  .modal__caption {
-    border-radius: 8px;
-    padding: 4px 8px;
-    font-family: "Poppins", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19.2px;
   }
 
   .modal__image {

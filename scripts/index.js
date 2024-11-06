@@ -104,10 +104,12 @@ function handleEditFormSubmit(evt) {
 }
 
 function handleAddCardSubmit(evt) {
-  evt.target.reset();
+  evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
+  closeModal(cardModal);
+  cardForm.reset();
 }
 
 editModalBtn.addEventListener("click", () => {
