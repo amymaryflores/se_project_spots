@@ -162,14 +162,15 @@
   }
 
   .modal__image {
-  
-    border-radius: 4px;
+    max-height: none;
+    max-width: none;
+    width: 100%;
  }
 
  .modal__close-preview {
     background-image: url(../images/ClosePreview.svg);
     top: -47px;
-    left: 224px;    
+    left: 262px;    
   }
 
   .modal__caption {
