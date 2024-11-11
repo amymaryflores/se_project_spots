@@ -10,11 +10,14 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  transition: visibility 0.5s, opacity 0.5s ease-in-out;
   padding: 0 20px;
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
 }
 
 .modal__content {
@@ -120,17 +123,17 @@
 }
 
 .modal__caption {
-    margin: 0;
-    padding: 4px 8px;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
-    color: #fff;
-    position: absolute;
-    background-color: #212121;
-    border-radius: 8px;
-    left: 0;
-    top: calc(100% + 10px);
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+  position: absolute;
+  background-color: #212121;
+  border-radius: 8px;
+  left: 0;
+  top: calc(100% + 10px);
 }
 
 @media screen and (max-width: 627px) {
@@ -165,12 +168,12 @@
     max-height: none;
     max-width: none;
     width: 100%;
- }
+  }
 
- .modal__close-preview {
+  .modal__close-preview {
     background-image: url(../images/ClosePreview.svg);
     top: -47px;
-    left: 262px;    
+    left: 262px;
   }
 
   .modal__caption {
@@ -178,5 +181,5 @@
     font-weight: 500;
     line-height: 19.2px;
     font-family: "poppins", Arial, Helvetica, sans-serif;
-}
+  }
 }
