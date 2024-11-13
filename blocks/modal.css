@@ -11,15 +11,13 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-  transform: scale(0.9);
+  transition: visibility 0.3s, opacity 0.8s ease-in;
   padding: 0 20px;
 }
 
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transform: scale(1);
 }
 
 .modal__content {
