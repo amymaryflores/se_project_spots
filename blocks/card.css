@@ -37,7 +37,7 @@
 }
 
 .card__like-btn_liked {
-  background-image: url(../images/Liked.svg);
+  background-image: url(../images/Union.svg);
   opacity: 1;
   background-color: transparent;
 }

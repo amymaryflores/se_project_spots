@@ -5,7 +5,7 @@
 .cards__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
-  max-width: 1401px; /* Fixed 3 columns per row */
+  max-width: 1401px;
   gap: 40px 20px;
   margin: 0;
   padding: 0;
