@@ -49,14 +49,14 @@ const toggleButtonState = (inputList, buttonEl) => {
 }
 };
 
-const enableVaildation = () => {
+const enableValidation = () => {
     const formList = document.querySelectorAll(".modal__form");
     formList.forEach((formEl) => {
         setEventListener(formEl);
     });
 };
 
-enableVaildation();
+enableValidation();
 
   function enableValidation(config) {
     const formList = document.querySelectorAll(config.formSelector);
