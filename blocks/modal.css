@@ -127,10 +127,12 @@ margin-top: 8px;
   cursor: pointer;
 }
 
-.modal__submit-btn:disabled {
-  background-image: url(../images/SubmitDisabled.svg);
-  
-}
+
+.modal__button_disabled {
+  background-color: #ccc; 
+  cursor: not-allowed;    
+  }
+
 
 .modal__content-preview {
   padding: 0;
