@@ -94,7 +94,15 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+    }
+  });
+});
 }
+
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
