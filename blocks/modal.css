@@ -105,6 +105,15 @@ opacity: 30%;
   border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
+.modal__input_type_error {
+  border: 1px solid red; /
+}
+
+.modal__error_visible {
+  color: red;  
+  display: block;
+}
+
 .modal__error {
  color: #FF0000B2;
  font-family: "Poppins", Arial, Helvetica, sans-serif;
