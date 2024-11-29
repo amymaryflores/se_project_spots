@@ -94,15 +94,7 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.forEach(modal => {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal(modal);
-    }
-  });
-});
 }
-
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -181,4 +173,16 @@ document.addEventListener("keydown", (evt) => {
       closeModal(openModal);
     }
   }
+});
+
+const closeOverlay = (evt) => {
+  const overlay = evt.target;
+  if (overlay.classList.contains('modal')) {
+    closeModal(overlay); 
+  }
+};
+
+const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => {
+      modal.addEventListener("mousedown", closeOverlay);
 });
