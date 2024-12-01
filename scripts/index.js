@@ -107,9 +107,6 @@ function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value.trim();
   const cardLink = cardLinkInput.value.trim();
-
-  const existingCards = [...cardsList.querySelectorAll('.card')];
-
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
