@@ -108,19 +108,7 @@ function handleAddCardSubmit(evt) {
   const cardName = cardNameInput.value.trim();
   const cardLink = cardLinkInput.value.trim();
 
-  if (!cardName || !cardLink) {
-    alert('Both fields must be filled!');
-    return;
-  }
-
   const existingCards = [...cardsList.querySelectorAll('.card')];
-  const isDuplicate = existingCards.some((card) => {
-    return card.querySelector('.card__image').src === cardLink;
-  });
-
-  if (isDuplicate) {
-    alert('This card already exists!');
-  }
 
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
@@ -155,25 +143,26 @@ editForm.addEventListener("submit", handleEditFormSubmit);
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-cardForm.addEventListener("submit", (evt) => {
-  handleAddCardSubmit(evt);
-  cardForm.reset(); 
-});
-
-
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.prepend(cardElement);
 });
 
-document.addEventListener("keydown", (evt) => {
+function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelector(".modal_opened");
     if (openModal) {
       closeModal(openModal);
     }
   }
-});
+};
+
+document.addEventListener("keydown", handleEscapeKey);
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscapeKey);
+}
 
 const closeOverlay = (evt) => {
   const overlay = evt.target;
