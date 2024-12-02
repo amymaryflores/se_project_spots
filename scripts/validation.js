@@ -16,9 +16,13 @@ const showInputError = (formEl, inputEl, errorMsg, config) => {
 
 const hideInputError = (formEl, inputEl, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
-  errorMsgEl.textContent = "";
+  if (errorMsgEl) {
+    errorMsgEl.textContent = "";
+    errorMsgEl.classList.remove(config.inputErrorClass);
+  }
   inputEl.classList.remove(config.inputErrorClass);
 };
+
 
 const checkInputValidity = (formEl, inputEl, config) => {
   if (!inputEl.validity.valid) {
@@ -37,11 +41,30 @@ const toggleButtonState = (inputList, buttonEl, config) => {
   }
 };
 
+const formEl = document.querySelector(".modal__form");
+formEl.reset();
+
+
+const resetValidation = (formEl, inputList, config) => {
+  inputList.forEach((input) => {
+    hideInputError(formEl, input, config);
+  });
+};
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {
     return !input.validity.valid;
   });
 };
+
+function disableButton(buttonEl, config) {
+  buttonEl.classList.add(config.inactiveButtonClass);
+  buttonEl.disabled = true;
+}
+
+const inputList = Array.from(document.querySelectorAll(config.inputSelector));
+const buttonList = Array.from(document.querySelectorAll(config.buttonSelector));
+const cardList = Array.from(document.querySelectorAll(config.cardSelector));
 
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
