@@ -38,6 +38,12 @@ const hasInvalidInput = (inputList) => {
     return !input.validity.valid;
   });
 };
+const resetValidation = (formElement, inputList, config) => {
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, config);
+  });
+};
+
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
