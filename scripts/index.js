@@ -88,38 +88,66 @@ function getCardElement(data) {
   return cardElement;
 }
 
-
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  }
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+// Function to disable the submit button
+function disableButton(buttonEl) {
+  buttonEl.classList.add(config.inactiveButtonClass); 
+  buttonEl.disabled = true; 
 }
 
+// Function to enable the submit button
+function enableSubmitButton(buttonEl) {
+  buttonEl.classList.remove(config.inactiveButtonClass);
+  buttonEl.disabled = false;
+}
+
+// Open Modal Function
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  const form = modal.querySelector(".modal__form");
+  if (form) {
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    disableButton(submitButton);  // Disable button when modal opens
+  }
+}
+
+// Close Modal Function
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  const form = modal.querySelector(".modal__form");
+  if (form) {
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    enableSubmitButton(submitButton);  // Enable button when modal closes
+  }
+}
+
+// Handle Add Card Submit
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const inputValues = {
+    name: cardNameInput.value,
+    link: cardLinkInput.value,
+  };
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
+  cardForm.reset();
+  const submitButton = cardForm.querySelector(config.submitButtonSelector);
+  disableButton(submitButton);  // Disable submit button after card is added
+  closeModal(cardModal);
+}
+
+// Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
   closeModal(editModal);
+  editForm.reset();
 }
 
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-  const cardName = cardNameInput.value.trim();
-  const cardLink = cardLinkInput.value.trim();
-  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
-  closeModal(cardModal);
-  cardForm.reset();
-}
-
+// Add Event Listeners for Modal Open and Close
 editModalBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
-  resetValidation(editModalBtn, [nameInput, descriptionInput], config)
   openModal(editModal);
 });
 
@@ -135,17 +163,16 @@ cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
 
+// Preview Modal Close
 previewModalCloseButton.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
+// Card Form Submit Event
 editForm.addEventListener("submit", handleEditFormSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((item) => {
-  const cardElement = getCardElement(item);
-  cardsList.prepend(cardElement);
-});
-
+// Handle Escape Key to Close Modal
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelector(".modal_opened");
@@ -155,19 +182,20 @@ function handleEscapeKey(evt) {
   }
 };
 document.addEventListener("keydown", handleEscapeKey);
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-};
 
-
+// Close Modal When Clicking Outside (Overlay)
 const closeOverlay = (evt) => {
   const overlay = evt.target;
-  if (overlay.classList.contains('modal')) {
-    closeModal(overlay); 
+  if (overlay.classList.contains("modal")) {
+    closeModal(overlay); // Close modal when clicking outside
   }
 };
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("mousedown", closeOverlay);
+});
 
-const modals = document.querySelectorAll(".modal");
-    modals.forEach((modal) => {
-      modal.addEventListener("mousedown", closeOverlay);
+// Add Initial Cards
+initialCards.forEach((item) => {
+  const cardElement = getCardElement(item);
+  cardsList.prepend(cardElement);
 });
