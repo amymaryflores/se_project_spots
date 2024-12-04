@@ -7,7 +7,6 @@ const initialCards = [
     name: "An outdoor cafe",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
   },
-
   {
     name: "A very long bridge, over the forest and through the tree",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
@@ -24,12 +23,13 @@ const initialCards = [
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
-{
-  name: "San Francisco Bridge",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-},
+  {
+    name: "San Francisco Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
+// Modal Elements
 const editModalBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
@@ -55,11 +55,9 @@ const previewModalCloseButton = document.querySelector(".modal__close-preview");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
+// Create a new card element
 function getCardElement(data) {
-  console.log(data);
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
+  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
 
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -88,36 +86,39 @@ function getCardElement(data) {
   return cardElement;
 }
 
-// Function to disable the submit button
-function disableButton(buttonEl) {
-  buttonEl.classList.add(config.inactiveButtonClass); 
-  buttonEl.disabled = true; 
-}
-
-// Function to enable the submit button
-function enableSubmitButton(buttonEl) {
-  buttonEl.classList.remove(config.inactiveButtonClass);
-  buttonEl.disabled = false;
-}
-
-// Open Modal Function
+// Open modal
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  resetErrorMessages(); // Reset errors when opening the modal
+
   const form = modal.querySelector(".modal__form");
   if (form) {
-    const submitButton = form.querySelector(config.submitButtonSelector);
-    disableButton(submitButton);  // Disable button when modal opens
+    const inputList = Array.from(form.querySelectorAll(".modal__input"));
+    const submitButton = form.querySelector(".modal__submit-btn");
+
+    toggleButtonState(inputList, submitButton, config); // Update button state based on input validity
   }
 }
 
-// Close Modal Function
+// Close modal
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+
+  // Reset form values and button state
   const form = modal.querySelector(".modal__form");
   if (form) {
-    const submitButton = form.querySelector(config.submitButtonSelector);
-    enableSubmitButton(submitButton);  // Enable button when modal closes
+    const submitButton = form.querySelector(".modal__submit-btn");
+    enableSubmitButton(submitButton); // Ensure submit button is enabled when closing modal
   }
+
+  // Reset form inputs
+  if (modal === cardModal) {
+    cardForm.reset();
+  } else if (modal === editModal) {
+    editForm.reset();
+  }
+
+  resetErrorMessages(); // Clear error messages when closing the modal
 }
 
 // Handle Add Card Submit
@@ -128,11 +129,11 @@ function handleAddCardSubmit(evt) {
     link: cardLinkInput.value,
   };
   const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
+  cardsList.prepend(cardElement); // Add new card to the list
   cardForm.reset();
-  const submitButton = cardForm.querySelector(config.submitButtonSelector);
-  disableButton(submitButton);  // Disable submit button after card is added
-  closeModal(cardModal);
+  const submitButton = cardForm.querySelector(".modal__submit-btn");
+  disableButton(submitButton); // Disable submit button after card is added
+  closeModal(cardModal); // Close modal
 }
 
 // Handle Edit Form Submit
@@ -140,35 +141,34 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  closeModal(editModal);
+  closeModal(editModal); // Close modal after form submission
   editForm.reset();
 }
 
-// Add Event Listeners for Modal Open and Close
+// Event listeners for modals and forms
 editModalBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
-  openModal(editModal);
+  openModal(editModal); // Open edit modal
 });
 
 editModalCloseButton.addEventListener("click", () => {
-  closeModal(editModal);
+  closeModal(editModal); // Close edit modal
 });
 
 cardModalBtn.addEventListener("click", () => {
-  openModal(cardModal);
+  openModal(cardModal); // Open add card modal
 });
 
 cardModalCloseBtn.addEventListener("click", () => {
-  closeModal(cardModal);
+  closeModal(cardModal); // Close add card modal
 });
 
-// Preview Modal Close
 previewModalCloseButton.addEventListener("click", () => {
-  closeModal(previewModal);
+  closeModal(previewModal); // Close preview modal
 });
 
-// Card Form Submit Event
+// Submit forms
 editForm.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
@@ -197,5 +197,5 @@ document.querySelectorAll(".modal").forEach((modal) => {
 // Add Initial Cards
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
-  cardsList.prepend(cardElement);
+  cardsList.prepend(cardElement); // Prepend initial cards
 });
