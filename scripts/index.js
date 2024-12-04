@@ -88,6 +88,17 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function disableButton(buttonEl) {
+  buttonEl.classList.add(config.inactiveButtonClass); 
+  buttonEl.disabled = true; 
+}
+
+// Function to enable the submit button
+function enableSubmitButton(buttonEl) {
+  buttonEl.classList.remove(config.inactiveButtonClass);
+  buttonEl.disabled = false;
+}
+
 // Open modal
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -109,7 +120,7 @@ function closeModal(modal) {
   // Reset form values and button state
   const form = modal.querySelector(".modal__form");
   if (form) {
-    const submitButton = form.querySelector(submitButtonSelector);
+    const submitButton = form.querySelector(".modal__submit-btn");
     enableSubmitButton(submitButton); // Ensure submit button is enabled when closing modal
   }
 
@@ -133,7 +144,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement); // Add new card to the list
   cardForm.reset();
-  const submitButton = cardForm.querySelector(submitButtonSelector);
+  const submitButton = cardForm.querySelector(".modal__submit-btn");
   disableButton(submitButton); // Disable submit button after card is added
   closeModal(cardModal); // Close modal
 }
