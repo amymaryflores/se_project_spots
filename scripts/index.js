@@ -109,7 +109,7 @@ function closeModal(modal) {
   // Reset form values and button state
   const form = modal.querySelector(".modal__form");
   if (form) {
-    const submitButton = form.querySelector(".modal__submit-btn");
+    const submitButton = form.querySelector(submitButtonSelector);
     enableSubmitButton(submitButton); // Ensure submit button is enabled when closing modal
   }
 
@@ -143,11 +143,6 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
-  cardForm.reset();
-  const submitButton = cardForm.querySelector(config.submitButtonSelector);
-  disableButton(submitButton);  // Disable submit button after card is added
   closeModal(editModal); // Close modal after form submission
   editForm.reset();
 }
