@@ -1,11 +1,11 @@
 // Configuration for form validation
 const config = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__submit-btn',
-  inactiveButtonClass: 'modal__submit-btn_disabled',
-  inputErrorClass: 'modal__input_type_error',
-  errorClass: 'modal__error_visible'
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__submit-btn_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
 };
 
 // Show input error
@@ -49,14 +49,14 @@ function hasInvalidInput(inputList) {
 
 // Reset error messages
 function resetErrorMessages() {
-  const errorMessages = document.querySelectorAll('.modal__error');
+  const errorMessages = document.querySelectorAll(".modal__error");
   errorMessages.forEach((message) => {
-    message.textContent = ''; // Clear error message text
+    message.textContent = ""; // Clear error message text
   });
 
-  const inputFields = document.querySelectorAll('.modal__input');
+  const inputFields = document.querySelectorAll(".modal__input");
   inputFields.forEach((input) => {
-    input.classList.remove('modal__input_type_error'); // Remove error styling
+    input.classList.remove("modal__input_type_error"); // Remove error styling
   });
 }
 

@@ -57,7 +57,9 @@ const cardsList = document.querySelector(".cards__list");
 
 // Create a new card element
 function getCardElement(data) {
-  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
 
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -131,7 +133,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement); // Add new card to the list
   cardForm.reset();
-  const submitButton = cardForm.querySelector(".modal__submit-btn");
+  const submitButton = cardForm.querySelector(submitButtonSelector);
   disableButton(submitButton); // Disable submit button after card is added
   closeModal(cardModal); // Close modal
 }
@@ -141,6 +143,11 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
+  cardForm.reset();
+  const submitButton = cardForm.querySelector(config.submitButtonSelector);
+  disableButton(submitButton);  // Disable submit button after card is added
   closeModal(editModal); // Close modal after form submission
   editForm.reset();
 }
@@ -180,7 +187,7 @@ function handleEscapeKey(evt) {
       closeModal(openModal);
     }
   }
-};
+}
 document.addEventListener("keydown", handleEscapeKey);
 
 // Close Modal When Clicking Outside (Overlay)
