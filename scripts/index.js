@@ -117,7 +117,6 @@ function handleAddCardSubmit(evt) {
   };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement); // Add new card to the list
-  cardForm.reset();
   const submitButton = cardForm.querySelector(".modal__submit-btn");
   disableButton(submitButton); // Disable submit button after card is added
   closeModal(cardModal); // Close modal
