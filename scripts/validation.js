@@ -47,13 +47,34 @@ function hasInvalidInput(inputList) {
   return inputList.some((input) => !input.validity.valid);
 }
 
+function disableButton(buttonEl) {
+  buttonEl.classList.add(config.inactiveButtonClass); 
+  buttonEl.disabled = true; 
+}
+
+// Function to enable the submit button
+function enableSubmitButton(buttonEl) {
+  buttonEl.classList.remove(config.inactiveButtonClass);
+  buttonEl.disabled = false;
+}
+
+const formEl = document.querySelector(config.formSelector);
+const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+const buttonEl = formEl.querySelector(config.submitButtonSelector);
+inputList.forEach((inputEl) => { 
+  toggleButtonState(inputList, buttonEl, config);
+  formEl.addEventListener("reset", () => {
+    disableButton(buttonEl, config);
+  });
+});
+
 // Reset error messages
 function resetErrorMessages() {
+
   const errorMessages = document.querySelectorAll(".modal__error");
   errorMessages.forEach((message) => {
     message.textContent = ""; // Clear error message text
   });
-
   const inputFields = document.querySelectorAll(".modal__input");
   inputFields.forEach((input) => {
     input.classList.remove("modal__input_type_error"); // Remove error styling
