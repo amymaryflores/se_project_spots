@@ -59,10 +59,19 @@ function enableSubmitButton(buttonEl) {
 
 // Reset error messages
 function resetErrorMessages(formEl) {
+  if (!formEl) return; // Gracefully exit if formEl is undefined
+
   const errorMessages = formEl.querySelectorAll(".modal__error");
   errorMessages.forEach((message) => {
     message.textContent = ""; // Clear error message text
   });
+
+  const inputFields = formEl.querySelectorAll(".modal__input");
+  inputFields.forEach((input) => {
+    input.classList.remove("modal__input_type_error"); // Remove error styling
+  });
+}
+
 
   const inputFields = formEl.querySelectorAll(".modal__input");
   inputFields.forEach((input) => {
