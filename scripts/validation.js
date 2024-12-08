@@ -31,6 +31,7 @@ function checkInputValidity(formEl, inputEl, config) {
   }
 }
 
+// Toggle button state
 function toggleButtonState(inputList, buttonEl, config) {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonEl); // Reuse disableButton
@@ -44,45 +45,46 @@ function hasInvalidInput(inputList) {
   return inputList.some((input) => !input.validity.valid);
 }
 
-function disableButton(buttonEl, config) {
+// Disable button
+function disableButton(buttonEl) {
   buttonEl.classList.add(config.inactiveButtonClass);
   buttonEl.disabled = true;
 }
 
-// Function to enable the submit button
-function enableSubmitButton(buttonEl, config) {
+// Enable submit button
+function enableSubmitButton(buttonEl) {
   buttonEl.classList.remove(config.inactiveButtonClass);
   buttonEl.disabled = false;
 }
 
-function resetErrorMessages() {
-  const errorMessages = document.querySelectorAll(".modal__error");
+// Reset error messages
+function resetErrorMessages(formEl) {
+  const errorMessages = formEl.querySelectorAll(".modal__error");
   errorMessages.forEach((message) => {
     message.textContent = ""; // Clear error message text
   });
-  const inputFields = document.querySelectorAll(".modal__input");
+
+  const inputFields = formEl.querySelectorAll(".modal__input");
   inputFields.forEach((input) => {
     input.classList.remove("modal__input_type_error"); // Remove error styling
   });
 }
 
-formEl.addEventListener("reset", () => {
-  resetErrorMessages(); // Reset error messages and styles
-  disableButton(buttonEl); // Disable button on form reset
-});
-
-// Set event listeners for the form
+// Set event listeners for each form
 function setEventListeners(formEl, config) {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
+
   toggleButtonState(inputList, buttonEl, config);
 
+  // Add reset event listener to form
   formEl.addEventListener("reset", () => {
-    disableButton(buttonEl, config); // Disable button on reset
+    resetErrorMessages(formEl); // Reset error messages and styles
+    disableButton(buttonEl); // Disable button on form reset
   });
 
   inputList.forEach((inputEl) => {
-    inputEl.addEventListener("input", function () {
+    inputEl.addEventListener("input", () => {
       checkInputValidity(formEl, inputEl, config);
       toggleButtonState(inputList, buttonEl, config);
     });
@@ -93,8 +95,9 @@ function setEventListeners(formEl, config) {
 function enableValidation(config) {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
-    setEventListeners(formEl, config);
+    setEventListeners(formEl, config); // Set validation for each form
   });
 }
 
+// Initialize validation
 enableValidation(config);

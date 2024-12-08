@@ -78,48 +78,17 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-
-  // Add Escape key listener
-  document.addEventListener("keydown", handleEscapeKey);
-
-  // Perform modal-specific actions
-  if (modal.querySelector(".modal__form")) {
-    handleFormModalOpen(modal); // Form-specific setup
-  }
+ // Add Escape key listener
+ document.addEventListener("keydown", handleEscapeKey);
 }
+
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-
-  // Remove Escape key listener
+  // Remove the event listener for Escape key to clean up
   document.removeEventListener("keydown", handleEscapeKey);
-
-  // Perform modal-specific actions
-  if (modal.querySelector(".modal__form")) {
-    handleFormModalClose(modal); // Form-specific cleanup
-  }
 }
 
-function handleFormModalOpen(modal) {
-  resetErrorMessages(); // Clear error messages
-  const form = modal.querySelector(".modal__form");
-
-  if (form) {
-    const inputList = Array.from(form.querySelectorAll(".modal__input"));
-    const submitButton = form.querySelector(".modal__submit-btn");
-    toggleButtonState(inputList, submitButton, config); // Update button state
-  }
-}
-
-function handleFormModalClose(modal) {
-  const form = modal.querySelector(".modal__form");
-
-  if (form) {
-    form.reset(); // Reset form fields
-    const submitButton = form.querySelector(".modal__submit-btn");
-    disableButton(submitButton); // Disable submit button after form reset
-  }
-}
 
 // Handle Add Card Submit
 function handleAddCardSubmit(evt) {
