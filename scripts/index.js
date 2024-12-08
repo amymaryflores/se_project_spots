@@ -76,51 +76,76 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function disableButton(buttonEl) {
-  buttonEl.classList.add(config.inactiveButtonClass); 
-  buttonEl.disabled = true; 
-}
-// Function to enable the submit button
-function enableSubmitButton(buttonEl) {
-  buttonEl.classList.remove(config.inactiveButtonClass);
-  buttonEl.disabled = false;
-}
-// Open modal
 function openModal(modal) {
   modal.classList.add("modal_opened");
 
-  resetErrorMessages(); // Reset errors when opening the modal
+  // Add Escape key listener
+  document.addEventListener("keydown", handleEscapeKey);
+
+  // Perform modal-specific actions
+  if (modal.querySelector(".modal__form")) {
+    handleFormModalOpen(modal); // Form-specific setup
+  }
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+
+  // Remove Escape key listener
+  document.removeEventListener("keydown", handleEscapeKey);
+
+  // Perform modal-specific actions
+  if (modal.querySelector(".modal__form")) {
+    handleFormModalClose(modal); // Form-specific cleanup
+  }
+}
+
+function handleFormModalOpen(modal) {
+  resetErrorMessages(); // Clear error messages
   const form = modal.querySelector(".modal__form");
+
   if (form) {
     const inputList = Array.from(form.querySelectorAll(".modal__input"));
     const submitButton = form.querySelector(".modal__submit-btn");
-    toggleButtonState(inputList, submitButton, config); // Update button state based on input validity
+    toggleButtonState(inputList, submitButton, config); // Update button state
   }
 }
-// Close modal
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  // Reset form values and button state
 
+function handleFormModalClose(modal) {
   const form = modal.querySelector(".modal__form");
+
   if (form) {
+    form.reset(); // Reset form fields
     const submitButton = form.querySelector(".modal__submit-btn");
-    enableSubmitButton(submitButton); // Ensure submit button is enabled when closing modal
+    disableButton(submitButton); // Disable submit button after form reset
   }
 }
+
 // Handle Add Card Submit
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+
+  // Get input values
   const inputValues = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   };
+
+  // Create and add the new card
   const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement); // Add new card to the list
+  cardsList.prepend(cardElement);
+
+  // Reset the form
+  cardForm.reset();
+
+  // Disable the submit button to prevent empty submissions
   const submitButton = cardForm.querySelector(".modal__submit-btn");
-  disableButton(submitButton); // Disable submit button after card is added
-  closeModal(cardModal); // Close modal
+  disableButton(submitButton);
+
+  // Close the modal
+  closeModal(cardModal);
 }
+
 // Handle Edit Form Submit
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
