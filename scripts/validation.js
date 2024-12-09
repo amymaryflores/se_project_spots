@@ -72,13 +72,6 @@ function resetErrorMessages(formEl) {
   });
 }
 
-
-  const inputFields = formEl.querySelectorAll(".modal__input");
-  inputFields.forEach((input) => {
-    input.classList.remove("modal__input_type_error"); // Remove error styling
-  });
-}
-
 // Set event listeners for each form
 function setEventListeners(formEl, config) {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
