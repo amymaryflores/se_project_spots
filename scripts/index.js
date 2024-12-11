@@ -109,7 +109,7 @@ function handleAddCardSubmit(evt) {
 
   // Disable the submit button to prevent empty submissions
   const submitButton = cardForm.querySelector(".modal__submit-btn");
-  disableButton(submitButton);
+  disableButton(submitButton, config);
 
   // Close the modal
   closeModal(cardModal);
@@ -126,6 +126,7 @@ function handleEditFormSubmit(evt) {
 editModalBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
+  resetErrorMessages(editForm, config);
   openModal(editModal); // Open edit modal
 });
 editModalCloseButton.addEventListener("click", () => {
@@ -153,7 +154,6 @@ function handleEscapeKey(evt) {
   }
 }
 
-document.addEventListener("keydown", handleEscapeKey);
 // Close Modal When Clicking Outside (Overlay)
 const closeOverlay = (evt) => {
   const overlay = evt.target;

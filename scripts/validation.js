@@ -57,18 +57,11 @@ function enableSubmitButton(buttonEl) {
   buttonEl.disabled = false;
 }
 
-// Reset error messages
-function resetErrorMessages(formEl) {
-  if (!formEl) return; // Gracefully exit if formEl is undefined
-
-  const errorMessages = formEl.querySelectorAll(".modal__error");
-  errorMessages.forEach((message) => {
-    message.textContent = ""; // Clear error message text
-  });
-
-  const inputFields = formEl.querySelectorAll(".modal__input");
-  inputFields.forEach((input) => {
-    input.classList.remove("modal__input_type_error"); // Remove error styling
+// Reset error messages for a specific form
+function resetErrorMessages(formEl, config) {
+  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config); // Use hideInputError to remove error styles/messages
   });
 }
 
@@ -81,8 +74,8 @@ function setEventListeners(formEl, config) {
 
   // Add reset event listener to form
   formEl.addEventListener("reset", () => {
-    resetErrorMessages(formEl); // Reset error messages and styles
-    disableButton(buttonEl); // Disable button on form reset
+    resetErrorMessages(formEl, config); // Reset error messages and styles
+    disableButton(buttonEl, config); // Disable button on form reset
   });
 
   inputList.forEach((inputEl) => {
