@@ -63,7 +63,7 @@ function resetErrorMessages(formEl, config) {
   inputList.forEach((inputEl) => {
     hideInputError(formEl, inputEl, config); // Use hideInputError to remove error styles/messages
   });
-}
+} 
 
 // Set event listeners for each form
 function setEventListeners(formEl, config) {
