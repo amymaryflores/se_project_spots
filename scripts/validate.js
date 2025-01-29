@@ -1,5 +1,5 @@
 // Configuration for form validation
-const config = {
+export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
@@ -9,21 +9,21 @@ const config = {
 };
 
 // Show input error
-function showInputError(formEl, inputEl, errorMsg, config) {
+export function showInputError(formEl, inputEl, errorMsg, config) {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
   inputEl.classList.add(config.inputErrorClass);
 }
 
 // Hide input error
-function hideInputError(formEl, inputEl, config) {
+export function hideInputError(formEl, inputEl, config) {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = "";
   inputEl.classList.remove(config.inputErrorClass);
 }
 
 // Check input validity
-function checkInputValidity(formEl, inputEl, config) {
+export function checkInputValidity(formEl, inputEl, config) {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
@@ -32,7 +32,7 @@ function checkInputValidity(formEl, inputEl, config) {
 }
 
 // Toggle button state
-function toggleButtonState(inputList, buttonEl, config) {
+export function toggleButtonState(inputList, buttonEl, config) {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonEl); // Reuse disableButton
   } else {
@@ -41,32 +41,32 @@ function toggleButtonState(inputList, buttonEl, config) {
 }
 
 // Check for invalid input
-function hasInvalidInput(inputList) {
+export function hasInvalidInput(inputList) {
   return inputList.some((input) => !input.validity.valid);
 }
 
 // Disable button
-function disableButton(buttonEl) {
-  buttonEl.classList.add(config.inactiveButtonClass);
+export function disableButton(buttonEl) {
+  buttonEl.classList.add(validationConfig.inactiveButtonClass);
   buttonEl.disabled = true;
 }
 
 // Enable submit button
-function enableSubmitButton(buttonEl) {
-  buttonEl.classList.remove(config.inactiveButtonClass);
+export function enableSubmitButton(buttonEl) {
+  buttonEl.classList.remove(validationConfig.inactiveButtonClass);
   buttonEl.disabled = false;
 }
 
 // Reset error messages for a specific form
-function resetErrorMessages(formEl, config) {
-  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+export function resetErrorMessages(formEl, config) {
+  const inputList = Array.from(formEl.querySelectorAll(validationConfig.inputSelector));
   inputList.forEach((inputEl) => {
     hideInputError(formEl, inputEl, config); // Use hideInputError to remove error styles/messages
   });
-} 
+}
 
 // Set event listeners for each form
-function setEventListeners(formEl, config) {
+export function setEventListeners(formEl, config) {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonEl = formEl.querySelector(config.submitButtonSelector);
 
@@ -87,12 +87,9 @@ function setEventListeners(formEl, config) {
 }
 
 // Enable validation for all forms
-function enableValidation(config) {
+export function enableValidation(config) {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
     setEventListeners(formEl, config); // Set validation for each form
   });
 }
-
-// Initialize validation
-enableValidation(config);

@@ -1,3 +1,5 @@
+import { enableValidation, validationConfig, resetErrorMessages, toggleButtonState } from "./validate.js";
+
 const initialCards = [
   {
     name: "Restaurant terrace",
@@ -28,6 +30,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
+
 // Modal Elements
 const editModalBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
@@ -49,6 +52,7 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalCloseButton = document.querySelector(".modal__close-preview");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
 // Create a new card element
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -78,40 +82,31 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
- // Add Escape key listener
- document.addEventListener("keydown", handleEscapeKey);
+  document.addEventListener("keydown", handleEscapeKey);
 }
-
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  // Remove the event listener for Escape key to clean up
   document.removeEventListener("keydown", handleEscapeKey);
 }
-
 
 // Handle Add Card Submit
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-
-  // Get input values
   const inputValues = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   };
 
-  // Create and add the new card
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  // Reset the form
   cardForm.reset();
-
-  // Disable the submit button to prevent empty submissions
-  const submitButton = cardForm.querySelector(".modal__submit-btn");
-  disableButton(submitButton, config);
-
-  // Close the modal
+  toggleButtonState(
+    Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
+    cardForm.querySelector(validationConfig.submitButtonSelector),
+    validationConfig
+  );
   closeModal(cardModal);
 }
 
@@ -120,30 +115,58 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  closeModal(editModal); // Close modal after form submission
+
+  const cardElement = getCardElement({ name: nameInput.value, link: cardLinkInput.value });
+  cardsList.prepend(cardElement);
+
+  cardForm.reset();
+  toggleButtonState(
+    Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
+    cardForm.querySelector(validationConfig.submitButtonSelector),
+    validationConfig
+  );
+  closeModal(editModal);
 }
+
 // Event listeners for modals and forms
 editModalBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
-  resetErrorMessages(editForm, config);
-  openModal(editModal); // Open edit modal
+  resetErrorMessages(editForm, validationConfig);
+  toggleButtonState(
+    Array.from(editForm.querySelectorAll(validationConfig.inputSelector)),
+    editForm.querySelector(validationConfig.submitButtonSelector),
+    validationConfig
+  );
+  openModal(editModal);
 });
+
 editModalCloseButton.addEventListener("click", () => {
-  closeModal(editModal); // Close edit modal
+  closeModal(editModal);
 });
+
 cardModalBtn.addEventListener("click", () => {
-  openModal(cardModal); // Open add card modal
+  resetErrorMessages(cardForm, validationConfig);
+  toggleButtonState(
+    Array.from(cardForm.querySelectorAll(validationConfig.inputSelector)),
+    cardForm.querySelector(validationConfig.submitButtonSelector),
+    validationConfig
+  );
+  openModal(cardModal);
 });
+
 cardModalCloseBtn.addEventListener("click", () => {
-  closeModal(cardModal); // Close add card modal
+  closeModal(cardModal);
 });
+
 previewModalCloseButton.addEventListener("click", () => {
-  closeModal(previewModal); // Close preview modal
+  closeModal(previewModal);
 });
+
 // Submit forms
 editForm.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
+
 // Handle Escape Key to Close Modal
 function handleEscapeKey(evt) {
   if (evt.key === "Escape") {
@@ -158,14 +181,17 @@ function handleEscapeKey(evt) {
 const closeOverlay = (evt) => {
   const overlay = evt.target;
   if (overlay.classList.contains("modal")) {
-    closeModal(overlay); // Close modal when clicking outside
+    closeModal(overlay);
   }
 };
 document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("mousedown", closeOverlay);
 });
+
 // Add Initial Cards
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
-  cardsList.prepend(cardElement); // Prepend initial cards
+  cardsList.prepend(cardElement);
 });
+
+enableValidation(validationConfig);
