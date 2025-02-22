@@ -1,4 +1,5 @@
-import { enableValidation, validationConfig, resetErrorMessages, toggleButtonState } from "./validate.js";
+import "../pages/index.css";
+import { enableValidation, validationConfig, resetErrorMessages, toggleButtonState } from "../scripts/validate.js";
 
 const initialCards = [
   {
